@@ -1,0 +1,172 @@
+// -*- mode: jsonc -*-
+{
+    "spacing": 4, // Gaps between modules (4px)
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/window"
+    ],
+    "modules-center": [
+   	"group/time",
+    ],
+    "modules-right": [
+    	"group/connections",
+        "group/audio",
+		"keyboard-state",
+        "group/system",
+		"battery",
+        "custom/power"
+    ],
+
+
+    
+    "hyprland/workspaces": {
+         "disable-scroll": true,
+	 "format": "{icon}",
+         "all-outputs": true,
+         "warp-on-scroll": false,
+         "persistent-workspaces": {
+		"1":"1",
+		"2":"2",
+		"3":"3",
+		"4":"4",
+		"5":"5",
+	 	"6":"6"
+	 },
+	 "format-icons": {
+	 	"1":"",
+		"2":"󰈹",
+		"3":"",
+		"4":"",
+		"5":"5",
+	 	"6":"6"
+	 }
+     },
+    
+
+    "hyprland/window": {
+		"format": "{}.",
+	"rewrite": {
+		".*Mozilla Firefox.": "Firefox.",
+		".*Code - OSS.": "VSCode.",
+		".": "No Apps."
+	}
+    },
+    
+
+    "keyboard-state": {
+        "numlock": true,
+        "capslock": true,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
+    },
+
+
+    "group/time": {
+    	"modules": ["clock#date", "clock"],
+	"orientation": "horizontal",
+    },
+
+    "clock": {
+        // "timezone": "Brazil/East",
+        "format":"{:%H:%M:%S}",
+	"interval": 1,
+	"tooltip": false,
+    },
+
+    "clock#date": {
+    	"format": "{:%d-%m-%Y}",
+	"tooltip": false,
+    },
+
+
+    "group/system":{
+    	"modules": ["cpu", "memory"],
+	"orientation": "horizontal",
+    },
+
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false,
+    	"interval": 2,
+    },
+    "memory": {
+        "format": "{}% ",
+    	"interval": 2,
+		"tooltip-format": "{used}/{total}GiB used"
+    },
+
+    
+    "group/connections": {
+    	"modules": ["bluetooth", "network#state"],
+		"orientation": "horizontal"
+	},
+
+	"bluetooth": {
+		"format": "󰂱 {num_connections}",
+		"format-on": "󰂯",
+		"tooltip-format": "{controller_alias}\t{controller_address}",
+		"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+		"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+		"on-click": "rofi-bluetooth"
+	},
+
+	"network#state": {
+		"format": "{icon}",
+		"format-icons": {
+		"ethernet": "󰈁",
+		"wifi": ["󰤟", "󰤢", "󰤥", "󰤨"]
+		},	
+		"tooltip-format": "{essid}: {bandwidthUpBits} 󰅧  | {bandwidthDownBits} 󰅢 ",
+		"interval": 1,
+		"on-click": "networkmanager_dmenu"
+	}, 
+ 
+	"group/audio": {
+		"modules": ["pulseaudio#audio", "wireplumber"],
+		"orientation": "horizontal"
+	},
+
+    "pulseaudio#audio":{
+    	"format": "{volume}% {icon}",
+		"format-muted": "{volume}% ",
+		"max-volume": 100,
+		"scroll-step": 1,
+		"on-click": "pactl set-sink-mute 0 toggle",
+			"format-icons": {
+			"default": ["", "", ""],
+			},
+		"reverse-scrolling": true,
+    	"smooth-scrolling-threshold": 1.0
+	},
+	
+	"wireplumber":{
+		"node-type": "Audio/Source",
+		"format": "󰍬",
+		"format-muted": "󰍭",
+		"on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+	},
+
+	"battery": {
+		"interval": 1,
+		"states": {
+			"warning": 30,
+			"critical": 15
+		},
+		"format": "{capacity}% {icon}",
+		"format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+		"format-charging": "{capacity}% 󰂄",
+		"max-length": 25
+	},
+
+    "custom/power": {
+        "format" : "⏻",
+		"tooltip": false,
+		"on-click": "rofi -config /home/theo/.config/rofi/config_power_menu.rasi -show p -modi p:rofi-power-menu"
+    },
+	
+
+    "reload_style_on_change": true,
+}
