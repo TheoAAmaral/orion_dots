@@ -1,0 +1,119 @@
+/**
+ * User: Rasi
+ * Copyright: Rasmus Steinke
+ */
+
+/* global settings and color variables */
+* {
+    background: #16161D;
+    foreground: #DCD7BA;
+    selection: #363647;
+    foreground-dark: #C8C093;
+
+
+    spacing: 0em;
+    font: "JetBrainsMono Nerd Font Bold 14";
+    padding: 0px;
+    line-style: "none";
+}
+
+prompt-box {
+	background-color: transparent;
+}
+
+prompt {
+	background-color: transparent;
+	text-color: @foreground;
+}
+
+window {
+    border-radius: 10px;
+    background-color: @background;
+    border: 0;
+    color: @background;
+}
+
+mainbox {
+    padding: 0px;
+    background-color: @background;
+    color: @background;
+    spacing: 0%;
+}
+
+listview {
+    background-color: transparent;
+    scrollbar: false;
+    border-radius: 10px;
+}
+
+
+element {
+    border-radius: 0px;
+    padding: 0.7em 1em;
+    margin: 0px;
+    background-color: @background;
+}
+
+element-text {
+    background-color: @background;
+    color: @foreground;
+}
+
+element-text selected {
+    background-color: @foreground-dark;
+    color: @background;
+}
+
+element normal.active {
+    color: @selection;
+    background-color: @background;
+}
+
+element selected.normal {
+    border-radius: 0px;
+    background-color: @foreground-dark;
+}
+
+element selected.active {
+    color: @background;
+    background-color: @foreground-dark;
+}
+
+inputbar {
+    spacing: 10px;
+    border: 0.5em;
+    border-radius: 0px;
+    padding: 5px 10px 5px 20px;
+    background-color: @background;
+}
+
+separator {
+    background-color: @foreground-dark;
+    color: #00000000;
+}
+
+
+entry {
+    background-color: #00000000;
+    color: @foreground;
+    padding-left: 5px;
+}
+
+case-indicator normal.normal {
+    background-color: #00000000;
+    color: @foreground;
+    padding: 0px;
+}
+
+message {
+	margin: 30px 30px 30px 30px;
+	padding: 20px 30px 20px 20px;
+    padding:      1px ;
+    border-radius: 10px;
+    border: 5px 5px 5px 5px;
+}
+
+prompt-colon {
+    spacing:    0;
+    enabled: false;
+}

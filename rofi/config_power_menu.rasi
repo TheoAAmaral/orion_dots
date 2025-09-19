@@ -1,0 +1,7 @@
+
+@theme "/home/theo/.config/rofi/theme.rasi"
+
+
+listview {
+    lines: 6;
+}
