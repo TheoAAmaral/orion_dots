@@ -5,10 +5,10 @@
 
 /* global settings and color variables */
 * {
-    background: #16161D;
-    foreground: #DCD7BA;
+    background: #006175;
+    foreground: #8aebff;
     selection: #363647;
-    foreground-dark: #C8C093;
+    foreground-dark: #72c3d4;
 
 
     spacing: 0em;
@@ -49,7 +49,7 @@ listview {
 
 element {
     border-radius: 0px;
-    padding: 0.7em 1em;
+    padding: 13px 15px;
     margin: 0px;
     background-color: @background;
 }
