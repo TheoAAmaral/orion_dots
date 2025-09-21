@@ -5,11 +5,10 @@
 
 /* global settings and color variables */
 * {
-    background: #006175;
+    background: #363647;
     foreground: #8aebff;
-    selection: #363647;
     foreground-dark: #72c3d4;
-
+    inactive: #3b6770;
 
     spacing: 0em;
     font: "JetBrainsMono Nerd Font Bold 14";
@@ -17,26 +16,19 @@
     line-style: "none";
 }
 
-prompt-box {
-	background-color: transparent;
-}
-
-prompt {
-	background-color: transparent;
-	text-color: @foreground;
-}
-
+/* window / containers */
 window {
     border-radius: 10px;
     background-color: @background;
     border: 0;
-    color: @background;
+    /* CORREÇÃO: cor padrão do texto da janela deve ser foreground */
+    color: @foreground;
 }
 
 mainbox {
     padding: 0px;
     background-color: @background;
-    color: @background;
+    color: @foreground;
     spacing: 0%;
 }
 
@@ -44,41 +36,110 @@ listview {
     background-color: transparent;
     scrollbar: false;
     border-radius: 10px;
+    /* garante alinhamento consistente */
+    spacing: 0%;
+}
+
+/* entradas / elementos visíveis */
+prompt-box {
+    border-radius: 5px;
+}
+
+prompt {
+    enabled: true;
+    padding: 15px;
+    border: 0px 1px 0px 0px;
+    border-radius: 0px;
+    border-color: @foreground;
+    background-color: @background;
+    text-color: @foreground;
+}
+
+textbox-prompt-colon {
+    enabled: false;
+}
+
+/* ENTRY / TEXTBOX — forçar altura, padding e fonte consistentes */
+textbox, listview entry, listview row {
+    enabled: true;
+    padding: 13px 15px;
+    margin: 5px 10px;
+    border-radius: 10px;
+    background-color: @background;
+    text-color: @inactive;
+    cursor: text;
+    placeholder: "";
+    placeholder-color: inherit;
+    font: "JetBrainsMono Nerd Font Bold 14";
+}
+
+entry {
+    enabled: true;
+    padding: 13px 15px;
+    margin: 5px 10px;
+    border-radius: 10px;
+    background-color: @background;
+    text-color: @foreground;
+    cursor: text;
+    placeholder: "";
+    placeholder-color: inherit;
+    font: "JetBrainsMono Nerd Font Bold 14";
 }
 
 
-element {
-    border-radius: 0px;
-    padding: 13px 15px;
-    margin: 0px;
+/* estado selecionado (importantíssimo) — garantir padding/margin aqui também */
+entry selected,
+textbox selected,
+listview entry selected,
+listview row selected,
+element selected {
     background-color: @background;
+    text-color: @foreground;
+    border-radius: 10px;
+    padding: 13px 15px;
+    margin: 5px 10px;
+}
+
+/* elementos normais (itens da lista que não estão selecionados) */
+element {
+    padding: 13px 15px;
+    margin: 5px 10px;
+    border-radius: 10px;
+    background-color: @background; /* mantém aparência “transparente” até selecionado */
+}
+
+element-icon {
+    background-color: @background;
+    size: 1.2em;
+    padding: 0px 10px 0px 0px;
 }
 
 element-text {
     background-color: @background;
+    color: @inactive;
+}
+
+/* caso de texto selecionado dentro do elemento */
+element-text selected {
     color: @foreground;
 }
 
-element-text selected {
-    background-color: @foreground-dark;
-    color: @background;
+element-text selected.active {
+    background-color: @background;
+    color: @foreground;
 }
 
 element normal.active {
-    color: @selection;
+    color: @foreground;
     background-color: @background;
 }
 
 element selected.normal {
-    border-radius: 0px;
-    background-color: @foreground-dark;
+    border-radius: 10px;
+    background-color: @background;
 }
 
-element selected.active {
-    color: @background;
-    background-color: @foreground-dark;
-}
-
+/* inputbar / separadores / mensagens */
 inputbar {
     spacing: 10px;
     border: 0.5em;
@@ -92,13 +153,6 @@ separator {
     color: #00000000;
 }
 
-
-entry {
-    background-color: #00000000;
-    color: @foreground;
-    padding-left: 5px;
-}
-
 case-indicator normal.normal {
     background-color: #00000000;
     color: @foreground;
@@ -106,14 +160,8 @@ case-indicator normal.normal {
 }
 
 message {
-	margin: 30px 30px 30px 30px;
-	padding: 20px 30px 20px 20px;
-    padding:      1px ;
+    margin: 30px 30px 30px 30px;
+    padding: 1px;
     border-radius: 10px;
     border: 5px 5px 5px 5px;
-}
-
-prompt-colon {
-    spacing:    0;
-    enabled: false;
 }

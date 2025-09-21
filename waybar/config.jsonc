@@ -2,22 +2,35 @@
 {
     "spacing": 4, // Gaps between modules (4px)
     "modules-left": [
+		"custom/archlogo",
         "hyprland/workspaces",
-        "hyprland/window"
-    ],
+		"custom/wttrbar"
+	],
     "modules-center": [
    	"group/time",
     ],
     "modules-right": [
     	"group/connections",
         "group/audio",
-		"keyboard-state",
         "group/system",
 		"battery",
         "custom/power"
     ],
+	
+	
 
+	"custom/wttrbar": {
+		"format": "{}",
+		"tooltip": true,
+		"interval": 600,
+		"exec": "wttrbar --nerd",
+		"return-type": "json"
+	},
 
+	"custom/archlogo": {
+		"format": "󰣇",
+		"tooltip": false
+	},
     
     "hyprland/workspaces": {
          "disable-scroll": true,
@@ -51,17 +64,7 @@
 		".": "No Apps."
 	}
     },
-    
 
-    "keyboard-state": {
-        "numlock": true,
-        "capslock": true,
-        "format": "{name} {icon}",
-        "format-icons": {
-            "locked": "",
-            "unlocked": ""
-        }
-    },
 
 
     "group/time": {
@@ -105,16 +108,19 @@
 	},
 
 	"bluetooth": {
-		"format": "󰂱 {num_connections}",
+		"format": "󰂱",
 		"format-on": "󰂯",
-		"tooltip-format": "{controller_alias}\t{controller_address}",
-		"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
-		"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+		"tooltip-format": "{controller_alias}: {controller_address}",
+		"tooltip-format-connected": "{controller_alias}: {controller_address}\n\n{device_enumerate}",
+		"tooltip-format-enumerate-connected": "{device_alias}",
 		"on-click": "rofi-bluetooth"
 	},
 
 	"network#state": {
 		"format": "{icon}",
+		"format-disconnected": "󰤭",
+		"format-disabled": "󰤭",
+		"format-linked": "󰤭",
 		"format-icons": {
 		"ethernet": "󰈁",
 		"wifi": ["󰤟", "󰤢", "󰤥", "󰤨"]
