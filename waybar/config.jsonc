@@ -74,13 +74,13 @@
 
     "clock": {
         // "timezone": "Brazil/East",
-        "format":"{:%H:%M:%S}",
+        "format":"{:%H:%M}",
 	"interval": 1,
 	"tooltip": false,
     },
 
     "clock#date": {
-    	"format": "{:%d-%m-%Y}",
+    	"format": "{:%d/%m/%Y}",
 	"tooltip": false,
     },
 
