@@ -125,7 +125,7 @@
 		"ethernet": "󰈁",
 		"wifi": ["󰤟", "󰤢", "󰤥", "󰤨"]
 		},	
-		"tooltip-format": "{essid}: {bandwidthUpBits} 󰅧  | {bandwidthDownBits} 󰅢 ",
+		"tooltip-format": "{}: {bandwidthUpBits} 󰅧  | {bandwidthDownBits} 󰅢 ",
 		"interval": 1,
 		"on-click": "networkmanager_dmenu"
 	}, 

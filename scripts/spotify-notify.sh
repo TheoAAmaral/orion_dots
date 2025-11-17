@@ -9,9 +9,9 @@ last_id=""
 
 while sleep 0.2; do
     # ID único da faixa (combina título + artista)
-    title=$(playerctl metadata xesam:title 2>/dev/null)
-    artist=$(playerctl metadata xesam:artist 2>/dev/null)
-    art_url=$(playerctl metadata mpris:artUrl 2>/dev/null)
+    title=$(playerctl --player=spotify metadata xesam:title 2>/dev/null)
+    artist=$(playerctl --player=spotify metadata xesam:artist 2>/dev/null)
+    art_url=$(playerctl --player=spotify metadata mpris:artUrl 2>/dev/null)
 
     # Se playerctl falhar (Spotify fechado), pula
     [[ -z "$title" || -z "$artist" ]] && continue
@@ -30,9 +30,9 @@ while sleep 0.2; do
 
         # Envia notificação
         if [[ -f "$cover_path" ]]; then
-            notify-send -i "$cover_path" "🎶 $title" "$artist"
+            notify-send -i "$cover_path" "  $title" "$artist"
         else
-            notify-send "🎶 $title" "$artist"
+            notify-send "  $title" "$artist"
         fi
 
         last_id="$id"

@@ -51,7 +51,7 @@ notificationwindow, blankwindow, blankwindow {
 }
 
 * {
-  font-family: "JetBrainsMono Nerd Font";
+  font-family: "FiraCode Nerd Font";
 }
 
 
@@ -144,9 +144,9 @@ notificationwindow, blankwindow, blankwindow {
   /* Notification Primary Image */
   -gtk-icon-filter: none;
   -gtk-icon-size: var(--notification-icon-size);
-  border-radius: 100px;
+  border-radius: 0px;
   /* Size in px */
-  margin: 4px;
+  margin: 4px 6px;
 }
 
 .notification-row .notification-background .notification .notification-default-action .notification-content .app-icon {
