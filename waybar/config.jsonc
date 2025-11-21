@@ -10,11 +10,12 @@
    	"group/time",
     ],
     "modules-right": [
+		"group/music",
     	"group/connections",
         "group/audio",
         "group/system",
 		"battery",
-        "custom/power"
+		"group/group-power"
     ],
 	
 	
@@ -84,6 +85,32 @@
 	"tooltip": false,
     },
 
+
+	"group/music":{
+		"orientation": "inherit",
+		"drawer":{
+			"transition-duration": 500,
+			"children-class": "song-title",
+			"transition-left-to-right": false
+		},
+		"modules":[
+			"custom/spotify-logo",
+			"custom/title-text"
+		]
+	},
+
+	"custom/spotify-logo": {
+		"format": "",
+		"tooltip": false,
+		"on-click": "hyprctl dispatch workspace 4"
+	},
+
+	"custom/title-text": {
+		"format": "{text}",
+		"exec": "~/.config/scripts/songGetter",
+		"return-type": "json",
+		"restart-interval": 1
+	},
 
     "group/system":{
     	"modules": ["cpu", "memory"],
@@ -172,6 +199,41 @@
 		"tooltip": false,
 		"on-click": "rofi -config /home/theo/.config/rofi/config_power_menu.rasi -show p -modi p:rofi-power-menu"
     },
+    "custom/power2": {
+        "format" : "⏻",
+		"tooltip": false,
+		"on-click": "shutdown now"
+    },
+
+	"group/group-power": {
+		"orientation": "inherit",
+		"drawer": {
+			"transition-duration": 500,
+			"children-class": "not-power",
+			"transition-left-to-right": false,
+		},
+		"modules": [
+			"custom/power2", // First element is the "group leader" and won't ever be hidden
+			"custom/quit",
+			"custom/lock",
+			"custom/reboot"
+		]
+	},
+	"custom/quit": {
+		"format": "󰗼",
+		"tooltip": false,
+		"on-click": "hyprctl dispatch exit"
+	},
+	"custom/lock": {
+		"format": "󰍁",
+		"tooltip": false,
+		"on-click": "swaylock"
+	},
+	"custom/reboot": {
+		"format": "󰜉",
+		"tooltip": false,
+		"on-click": "reboot"
+	},
 	
 
     "reload_style_on_change": true,
