@@ -154,7 +154,7 @@
 		},	
 		"tooltip-format": "{}: {bandwidthUpBits} 󰅧  | {bandwidthDownBits} 󰅢 ",
 		"interval": 1,
-		"on-click": "networkmanager_dmenu"
+		"on-click": "~/.config/scripts/networkmanager_dmenu"
 	}, 
  
 	"group/audio": {
