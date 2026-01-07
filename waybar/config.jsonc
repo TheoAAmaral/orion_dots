@@ -171,6 +171,7 @@
 			"format-icons": {
 			"default": ["", "", ""],
 			},
+		"on-click-right": "hyprctl dispatch exec \"[workspace special:sinkswitch] kitty --class kitty-sinkswitch -e ~/.config/scripts/sinkswitch.sh -exclude 46\"",
 		"reverse-scrolling": true,
     	"smooth-scrolling-threshold": 1.0
 	},
