@@ -139,7 +139,7 @@
 		"format-on": "󰂯",
 		"tooltip-format": "{controller_alias}: {controller_address}",
 		"tooltip-format-connected": "{controller_alias}: {controller_address}\n\n{device_enumerate}",
-		"tooltip-format-enumerate-connected": "{device_alias}",
+		"tooltip-format-enumerate-connected": "{device_alias} (󰁾 {device_battery_percentage}%)",
 		"on-click": "rofi-bluetooth"
 	},
 
