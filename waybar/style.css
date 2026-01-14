@@ -85,7 +85,8 @@ window#waybar > box {
 }
 
 #workspaces button:nth-child(3) {
-	padding: 10px 16px 10px 14px;
+    font-size: 1em;
+	padding: 10px 15px 10px 15px;
 }
 
 #workspaces button:nth-child(4) {
