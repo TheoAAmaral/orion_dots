@@ -3,7 +3,6 @@ local fn = vim.fn
 
 -- Configurações
 local default_fqbn = "arduino:avr:uno"
-local default_port = vim.system({ "~/.config/scripts/arduino_board" }, { text = true }):wait().stdout
 
 -- Cria um grupo para evitar duplicação dos comandos se recarregar o arquivo
 local group = api.nvim_create_augroup("ArduinoConfig", { clear = true })
@@ -23,6 +22,8 @@ api.nvim_create_autocmd("FileType", {
         if fn.filereadable(yaml_path) == 0 then
             vim.notify("Arduino: Configurando projeto novo...", vim.log.levels.INFO)
 
+            local default_port =
+                vim.system({ "/home/theo/.config/scripts/arduino_board", default_fqbn }, { text = true }):wait().stdout
             -- Usamos fn.system (síncrono) para garantir que o arquivo exista ANTES do LSP tentar ler
             local cmd =
                 string.format("arduino-cli board attach -b %s -p %s '%s'", default_fqbn, default_port, project_dir)
@@ -51,6 +52,7 @@ api.nvim_create_autocmd("FileType", {
         end
 
         -- Definindo as teclas
+        vim.keymap.set("n", "<leader>a", "", { desc = "Arduino" })
         vim.keymap.set("n", "<leader>av", function()
             run_arduino("compile .")
         end, vim.tbl_extend("force", opts, { desc = "Arduino: Compilar" }))
@@ -61,12 +63,20 @@ api.nvim_create_autocmd("FileType", {
 
         vim.keymap.set("n", "<leader>am", function()
             -- Monitor precisa ser interativo e forçar a porta
-            if _G.Snacks and _G.Snacks.terminal then
-                Snacks.terminal("arduino-cli monitor -p " .. default_port, { cwd = project_dir })
-            else
-                vim.cmd("botright 15split | term arduino-cli monitor -p " .. default_port)
-            end
+            vim.ui.input({ prompt = "Enter baud rate:" }, function(input)
+                Snacks.terminal("arduino-cli monitor --config " .. input, { cwd = project_dir })
+            end)
         end, vim.tbl_extend("force", opts, { desc = "Arduino: Monitor" }))
+        vim.keymap.set("n", "<leader>aa", function()
+            vim.ui.input({ prompt = "Enter FBQN:" }, function(input)
+                local default_port = vim.system({ "/home/theo/.config/scripts/arduino_board", input }, { text = true })
+                    :wait().stdout
+                local cmd = string.format("arduino-cli board attach -b %s -p %s '%s'", input, default_port, project_dir)
+                fn.system(cmd)
+                vim.notify("Arduino: sketch.yaml criado! Reiniciando LSP...", vim.log.levels.INFO)
+                vim.cmd("LspRestart")
+            end)
+        end, vim.tbl_extend("force", opts, { desc = "Arduino: Atualizar scratch.yaml" }))
     end,
 })
 return {}
